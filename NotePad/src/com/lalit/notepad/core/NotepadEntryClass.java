@@ -16,8 +16,6 @@ import com.lalit.notepad.event.listener.SaveMenuEventListener;
 
 public class NotepadEntryClass {
 
-	private String currentFileLocation = null;
-
 	public static void main(String[] args) {
 
 		JFrame frame = new JFrame("Untitled - NotePad");

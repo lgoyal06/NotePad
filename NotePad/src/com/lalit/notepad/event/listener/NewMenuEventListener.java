@@ -8,7 +8,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 
 import com.lalit.notepad.utils.FileUtils;
-import com.lalit.notepad.utils.StringUtils;
 
 public class NewMenuEventListener implements MouseListener {
 
