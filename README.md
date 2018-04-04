@@ -1,6 +1,9 @@
 # NotePad
-We will try to use Swing to design copy of Window provided Notepad
-Also we will focus on learning 
+We will use Swing to design Notepad with all functionality that Window Notepad App provides 
+
+Learning Goals -
 -- Design Patterns
--- Thread
+-- Threads
+-- Serialization
+
 
