@@ -9,6 +9,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JTextArea;
 
 import com.lalit.notepad.component.builder.MenuBarBuilder;
+import com.lalit.notepad.event.listener.ExitMenuEventListener;
 import com.lalit.notepad.event.listener.NewMenuEventListener;
 import com.lalit.notepad.event.listener.OpenMenuEventListener;
 import com.lalit.notepad.event.listener.SaveAsMenuEventListener;
@@ -20,6 +21,7 @@ public class NotepadEntryClass {
 
 		JFrame frame = new JFrame("Untitled - NotePad");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		GlobalApplicationStates.setMainJFrame(frame);
 
 		JTextArea textArea = new JTextArea();
 		textArea.setOpaque(true);
@@ -36,7 +38,8 @@ public class NotepadEntryClass {
 				.addMouseListener(new SaveAsMenuEventListener(textArea))
 				.addMenuItems("Page SetUp...", true, new Color(14, 165, 127))
 				.addMenuItems("Print", true, new Color(14, 165, 127))
-				.addMenuItems("Exit", true, new Color(14, 165, 127)).build();
+				.addMenuItems("Exit", true, new Color(14, 165, 127)).addMouseListener(new ExitMenuEventListener())
+				.build();
 
 		menuBar = new MenuBarBuilder(menuBar).addMenu("Edit", true, new Color(54, 165, 127))
 				.addMenuItems("Undo", true, new Color(14, 165, 127)).addMenuItems("Cut", true, new Color(14, 165, 127))

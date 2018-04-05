@@ -3,6 +3,8 @@ package com.lalit.notepad.utils;
 public final class StringUtils {
 
 	public static boolean compare(String s1, String s2) {
+		s1 = s1.replaceAll("\n", "");
+		s2 = s2.replaceAll("\n", "");
 		if (s1.length() != s2.length()) {
 			return false;
 		}

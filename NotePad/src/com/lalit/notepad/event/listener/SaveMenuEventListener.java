@@ -8,7 +8,7 @@ import java.io.OutputStreamWriter;
 
 import javax.swing.JTextArea;
 
-import com.lalit.notepad.core.GlobalApplicatinStates;
+import com.lalit.notepad.core.GlobalApplicationStates;
 import com.lalit.notepad.utils.FileUtils;
 
 public class SaveMenuEventListener implements MouseListener {
@@ -27,10 +27,10 @@ public class SaveMenuEventListener implements MouseListener {
 	 * Invoked when a mouse button has been pressed on a component.
 	 */
 	public void mousePressed(MouseEvent e) {
-		if (GlobalApplicatinStates.getCurrentFileLocation() != null) {
+		if (GlobalApplicationStates.getCurrentFileLocation() != null) {
 			try {
 				textArea.write(new OutputStreamWriter(
-						new FileOutputStream(new File(GlobalApplicatinStates.getCurrentFileLocation())), "utf-8"));
+						new FileOutputStream(new File(GlobalApplicationStates.getCurrentFileLocation())), "utf-8"));
 			} catch (Exception e1) {
 				e1.printStackTrace();
 			}
