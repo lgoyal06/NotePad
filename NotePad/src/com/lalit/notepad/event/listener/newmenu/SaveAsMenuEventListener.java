@@ -1,9 +1,11 @@
-package com.lalit.notepad.event.listener;
+package com.lalit.notepad.event.listener.newmenu;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-public class ExitMenuEventListener implements MouseListener {
+import com.lalit.notepad.utils.FileUtils;
+
+public class SaveAsMenuEventListener implements MouseListener {
 
 	public void mouseClicked(MouseEvent e) {
 
@@ -13,7 +15,7 @@ public class ExitMenuEventListener implements MouseListener {
 	 * Invoked when a mouse button has been pressed on a component.
 	 */
 	public void mousePressed(MouseEvent e) {
-		System.exit(0);
+		FileUtils.performSaveFileAction();
 	}
 
 	/**

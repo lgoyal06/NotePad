@@ -1,7 +1,9 @@
-package com.lalit.notepad.event.listener;
+package com.lalit.notepad.event.listener.newmenu;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.FileOutputStream;
+import java.io.OutputStreamWriter;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -23,22 +25,20 @@ public class NewMenuEventListener implements MouseListener {
 		try {
 			if (GlobalApplicationObjects.getCurrentFileLocation() != null) {
 				String currentFileData = FileUtils.readFile(GlobalApplicationObjects.getCurrentFileLocation());
-				if (!StringUtils.compare(GlobalApplicationObjects.getTextAreaText(), currentFileData)) {
+				if (!isAllDataSaved(currentFileData)) {
 					Object[] options = { "Save", "Don't Save", "Cancel" };
 					int optionSelected = JOptionPane.showOptionDialog(new JFrame("NotePad"),
 							"Do you want to save changes it?", "", JOptionPane.YES_NO_OPTION,
 							JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
 					if (optionSelected == 0) {
-						FileUtils.performSaveFileAction();
+						GlobalApplicationObjects.writeToFile((new OutputStreamWriter(
+								new FileOutputStream(GlobalApplicationObjects.getCurrentFileLocation()), "utf-8")));
+						resetSettingsToNewFile();
 					} else if (optionSelected == 1) {
-						GlobalApplicationObjects.setTextAreaText("");
-						GlobalApplicationObjects.resetCurrentFileLocation();
-						GlobalApplicationObjects.updateJFrameTitle("Untitled - NotePad");
+						resetSettingsToNewFile();
 					}
 				} else {
-					GlobalApplicationObjects.resetCurrentFileLocation();
-					GlobalApplicationObjects.updateJFrameTitle("Untitled - NotePad");
-					GlobalApplicationObjects.setTextAreaText("");
+					resetSettingsToNewFile();
 				}
 			} else {
 				if (GlobalApplicationObjects.getTextAreaLength() > 0) {
@@ -48,14 +48,25 @@ public class NewMenuEventListener implements MouseListener {
 							JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
 					if (optionSelected == 0) {
 						FileUtils.performSaveFileAction();
+						resetSettingsToNewFile();
 					} else if (optionSelected == 1) {
-						GlobalApplicationObjects.setTextAreaText("");
+						resetSettingsToNewFile();
 					}
 				}
 			}
 		} catch (Exception e1) {
 			e1.printStackTrace();
 		}
+	}
+
+	private boolean isAllDataSaved(String currentFileData) {
+		return StringUtils.compare(GlobalApplicationObjects.getTextAreaText(), currentFileData);
+	}
+
+	private void resetSettingsToNewFile() {
+		GlobalApplicationObjects.setTextAreaText("");
+		GlobalApplicationObjects.resetCurrentFileLocation();
+		GlobalApplicationObjects.updateJFrameTitle("Untitled - NotePad");
 	}
 
 	/**

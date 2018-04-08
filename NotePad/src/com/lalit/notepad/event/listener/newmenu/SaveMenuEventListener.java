@@ -1,4 +1,4 @@
-package com.lalit.notepad.event.listener;
+package com.lalit.notepad.event.listener.newmenu;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;

@@ -1,4 +1,4 @@
-package com.lalit.notepad.event.listener;
+package com.lalit.notepad.event.listener.newmenu;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -49,6 +49,7 @@ public class OpenMenuEventListener implements MouseListener {
 					"", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
 			if (optionSelected == 0) {
 				FileUtils.performSaveFileAction();
+				FileUtils.performOpenFileAction();
 			} else if (optionSelected == 1) {
 				FileUtils.performOpenFileAction();
 			}

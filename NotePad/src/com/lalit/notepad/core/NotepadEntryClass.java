@@ -9,11 +9,11 @@ import javax.swing.JMenuBar;
 import javax.swing.JTextArea;
 
 import com.lalit.notepad.component.builder.MenuBarBuilder;
-import com.lalit.notepad.event.listener.ExitMenuEventListener;
-import com.lalit.notepad.event.listener.NewMenuEventListener;
-import com.lalit.notepad.event.listener.OpenMenuEventListener;
-import com.lalit.notepad.event.listener.SaveAsMenuEventListener;
-import com.lalit.notepad.event.listener.SaveMenuEventListener;
+import com.lalit.notepad.event.listener.newmenu.ExitMenuEventListener;
+import com.lalit.notepad.event.listener.newmenu.NewMenuEventListener;
+import com.lalit.notepad.event.listener.newmenu.OpenMenuEventListener;
+import com.lalit.notepad.event.listener.newmenu.SaveAsMenuEventListener;
+import com.lalit.notepad.event.listener.newmenu.SaveMenuEventListener;
 
 public class NotepadEntryClass {
 
