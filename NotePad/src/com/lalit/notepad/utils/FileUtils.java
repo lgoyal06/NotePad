@@ -13,36 +13,37 @@ import java.util.stream.Stream;
 
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
-import javax.swing.JTextArea;
 
-import com.lalit.notepad.core.GlobalApplicationStates;
+import com.lalit.notepad.core.GlobalApplicationObjects;
 
 public final class FileUtils {
 
-	public static final void saveFile(JTextArea textArea) {
+	public static final void performSaveFileAction() {
 		JFileChooser fileChooser = new JFileChooser();
 		fileChooser.setDialogTitle("Save As");
 		if (fileChooser.showSaveDialog(new JFrame()) == JFileChooser.APPROVE_OPTION) {
 			File selectedFile = fileChooser.getSelectedFile();
 			try {
-				textArea.write(new OutputStreamWriter(new FileOutputStream(selectedFile), "utf-8"));
-				GlobalApplicationStates.setCurrentFileLocation(selectedFile.getAbsolutePath());
-				GlobalApplicationStates.updateJFrameTitle(selectedFile.getName());
+				GlobalApplicationObjects
+						.writeToFile((new OutputStreamWriter(new FileOutputStream(selectedFile), "utf-8")));
+				GlobalApplicationObjects.setCurrentFileLocation(selectedFile.getAbsolutePath());
+				GlobalApplicationObjects.updateJFrameTitle(selectedFile.getName());
 			} catch (Exception exp) {
 				exp.printStackTrace();
 			}
 		}
 	}
 
-	public static final void openFile(JTextArea textArea) {
+	public static final void performOpenFileAction() {
 		JFileChooser fileChooser = new JFileChooser();
 		fileChooser.setDialogTitle("Open");
 		if (fileChooser.showOpenDialog(new JFrame()) == JFileChooser.APPROVE_OPTION) {
 			File selectedFile = fileChooser.getSelectedFile();
 			try {
-				textArea.read(new InputStreamReader(new FileInputStream(selectedFile), "utf-8"), "txt");
-				GlobalApplicationStates.updateJFrameTitle(selectedFile.getName());
-				GlobalApplicationStates.setCurrentFileLocation(selectedFile.getAbsolutePath());
+				GlobalApplicationObjects
+						.writeToTextArea(new InputStreamReader(new FileInputStream(selectedFile), "utf-8"), "txt");
+				GlobalApplicationObjects.updateJFrameTitle(selectedFile.getName());
+				GlobalApplicationObjects.setCurrentFileLocation(selectedFile.getAbsolutePath());
 			} catch (Exception exp) {
 				exp.printStackTrace();
 			}

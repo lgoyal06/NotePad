@@ -21,7 +21,6 @@ public class NotepadEntryClass {
 
 		JFrame frame = new JFrame("Untitled - NotePad");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		GlobalApplicationStates.setMainJFrame(frame);
 
 		JTextArea textArea = new JTextArea();
 		textArea.setOpaque(true);
@@ -29,15 +28,15 @@ public class NotepadEntryClass {
 
 		// Fluent Design API Patteren
 		JMenuBar menuBar = new MenuBarBuilder().addMenu("File", true, new Color(54, 165, 127))
-				.addMenuItems("New", true, new Color(14, 165, 127)).addMouseListener(new NewMenuEventListener(textArea))
-				.addMenuItems("Open...", true, new Color(14, 165, 127))
-				.addMouseListener(new OpenMenuEventListener(textArea))
-				.addMenuItems("Save", true, new Color(14, 165, 127))
-				.addMouseListener(new SaveMenuEventListener(textArea))
-				.addMenuItems("Save As", true, new Color(14, 165, 127))
-				.addMouseListener(new SaveAsMenuEventListener(textArea))
+				.addMenuItems("New    Ctrl+N", true, new Color(14, 165, 127))
+				.addMouseListener(new NewMenuEventListener())
+				.addMenuItems("Open   Ctrl+O", true, new Color(14, 165, 127))
+				.addMouseListener(new OpenMenuEventListener())
+				.addMenuItems("Save   Ctrl+S", true, new Color(14, 165, 127))
+				.addMouseListener(new SaveMenuEventListener()).addMenuItems("Save As", true, new Color(14, 165, 127))
+				.addMouseListener(new SaveAsMenuEventListener())
 				.addMenuItems("Page SetUp...", true, new Color(14, 165, 127))
-				.addMenuItems("Print", true, new Color(14, 165, 127))
+				.addMenuItems("Print  Ctrl+P", true, new Color(14, 165, 127))
 				.addMenuItems("Exit", true, new Color(14, 165, 127)).addMouseListener(new ExitMenuEventListener())
 				.build();
 
@@ -69,5 +68,8 @@ public class NotepadEntryClass {
 
 		frame.pack();
 		frame.setVisible(true);
+
+		GlobalApplicationObjects.setMainJFrame(frame);
+		GlobalApplicationObjects.setMainJTextArea(textArea);
 	}
 }

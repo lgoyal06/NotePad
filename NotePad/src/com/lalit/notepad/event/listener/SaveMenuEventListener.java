@@ -2,22 +2,13 @@ package com.lalit.notepad.event.listener;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.io.File;
 import java.io.FileOutputStream;
 import java.io.OutputStreamWriter;
 
-import javax.swing.JTextArea;
-
-import com.lalit.notepad.core.GlobalApplicationStates;
+import com.lalit.notepad.core.GlobalApplicationObjects;
 import com.lalit.notepad.utils.FileUtils;
 
 public class SaveMenuEventListener implements MouseListener {
-
-	private final JTextArea textArea;
-
-	public SaveMenuEventListener(JTextArea textArea) {
-		this.textArea = textArea;
-	}
 
 	public void mouseClicked(MouseEvent e) {
 
@@ -27,15 +18,15 @@ public class SaveMenuEventListener implements MouseListener {
 	 * Invoked when a mouse button has been pressed on a component.
 	 */
 	public void mousePressed(MouseEvent e) {
-		if (GlobalApplicationStates.getCurrentFileLocation() != null) {
+		if (GlobalApplicationObjects.getCurrentFileLocation() != null) {
 			try {
-				textArea.write(new OutputStreamWriter(
-						new FileOutputStream(new File(GlobalApplicationStates.getCurrentFileLocation())), "utf-8"));
+				GlobalApplicationObjects.writeToFile((new OutputStreamWriter(
+						new FileOutputStream(GlobalApplicationObjects.getCurrentFileLocation()), "utf-8")));
 			} catch (Exception e1) {
 				e1.printStackTrace();
 			}
 		} else {
-			FileUtils.saveFile(textArea);
+			FileUtils.performSaveFileAction();
 		}
 	}
 
